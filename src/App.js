@@ -9,11 +9,17 @@ function App() {
     <Router>
       <Header/>
       <Switch>
+
+      <Route exact path="/">
+        <h1>I am homepage</h1>
+      </Route>
+
       <Route path="/chat">
         <h1>I am the chat page</h1>
       </Route>
-      <Route path="/">
-        <h1>I am homepage</h1>
+
+      <Route path="/message">
+        <h1>I am the message page</h1>
       </Route>
       </Switch>
     </Router>
