@@ -1,19 +1,25 @@
-import React,{useState} from 'react';
+import React,{useEffect,useState} from 'react';
 import TinderCard from "react-tinder-card";
+import database from "./firebase";
 import './TinderCards.css'
 
 function TinderCards() {
 
-    const [shoes,setShoes] = useState([
-        {
-            name: "Yeezy 350",
-            url: "https://sneakernews.com/wp-content/uploads/2021/02/yeezy-350-ash-stone-store-list.jpg"
-        },
-        {
-            name: "Jordan 1 dior",
-            url: "https://theshoesbrand.com/wp-content/uploads/2020/12/air-jordan-1-x-dior-1.jpg"
-        }
-    ]);
+    const [shoes,setShoes] = useState([]);
+
+    
+    //Piece of code which runs based on a condition
+    useEffect(() => {
+        //this is where the code runs
+
+        database
+        .collection("shoes")
+        .onSnapshot((snapshot) => 
+            setShoes(snapshot.docs.map((doc) => doc.data()))
+        );
+
+        //this will run ONCE when the component loads, and never again
+    },[]);
 
     //react way in inserting item in array
     //setPeople([...people,'sonny,'qazi'])
