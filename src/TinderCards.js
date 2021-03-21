@@ -12,11 +12,15 @@ function TinderCards() {
     useEffect(() => {
         //this is where the code runs
 
-        database
+       const unsubscribe =  database
         .collection("shoes")
         .onSnapshot((snapshot) => 
             setShoes(snapshot.docs.map((doc) => doc.data()))
         );
+
+        return () => {
+            unsubscribe();
+        }
 
         //this will run ONCE when the component loads, and never again
     },[]);
@@ -44,7 +48,7 @@ function TinderCards() {
             ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default TinderCards
