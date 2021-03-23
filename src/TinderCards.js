@@ -6,7 +6,6 @@ import './TinderCards.css'
 function TinderCards() {
 
     const [shoes,setShoes] = useState([]);
-
     
     //Piece of code which runs based on a condition
     useEffect(() => {
@@ -15,7 +14,7 @@ function TinderCards() {
        const unsubscribe =  database
         .collection("shoes")
         .onSnapshot((snapshot) => 
-            setShoes(snapshot.docs.map((doc) => doc.data()))
+            setShoes(snapshot.docs.map((doc) => doc.data())) //population of shoes data
         );
 
         return () => {
